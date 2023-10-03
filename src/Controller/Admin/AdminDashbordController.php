@@ -50,6 +50,7 @@ class AdminDashbordController extends AbstractDashboardController
     {
         // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
+        yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
