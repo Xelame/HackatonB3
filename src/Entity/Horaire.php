@@ -15,7 +15,7 @@ class Horaire
     private ?int $id = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(name: 'idUser', referencedColumnName: 'idUser')]
+    #[ORM\JoinColumn(name: 'idUser', referencedColumnName: 'etat_id')]
     private ?User $user = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
