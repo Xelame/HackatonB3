@@ -3,11 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use Doctrine\DBAL\Types\IntegerType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -29,7 +31,9 @@ class UserCrudController extends AbstractCrudController
             TextField::new('password')
                 ->onlyWhenCreating()
                 ->setFormType(PasswordType::class),
-            ArrayField::new('roles')
+            ArrayField::new('roles'),
+            IntegerField::new('etat')
+                ->setFormType(IntegerType::class)
 
 
         ];
