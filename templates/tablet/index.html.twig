@@ -11,7 +11,29 @@
 <style>
     .orange { margin: 0; padding: 0; min-width: 100vw; min-height: 100vh; background-color: orange;}
     .red { margin: 0; padding: 0; min-width: 100vw; min-height: 100vh; background-color: red;}
-    .green { margin: 0; padding: 0; min-width: 100vw; min-height: 100vh; background-color: green;}
+    .green { margin: 0; padd   ing: 0; min-width: 100vw; min-height: 100vh; background-color: green;}
 </style>
+
+<script> 
+    function checkEtat(){
+        const etatDiv = document.querySelector('.{{ etat }}');
+        let previousEtat = "{{ etat }}";
+    }
+    function fetchEtat(){
+        fetch({{path('tablet_etat')
+        .then (Response => Response.json())
+        .then(data => {
+            const currentEtat = data.etat;
+            if(currentEtat !== previousEtat){
+                etatDiv.className = currentEtat; 
+                previousEtat = currentEtat;
+            }
+        });
+
+}})
+    setInterval(fetchEtat, 30);
+    }
+    checkEtat();
+</script>
 
 {% endblock %}
