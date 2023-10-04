@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -31,7 +32,7 @@ class UserCrudController extends AbstractCrudController
                 ->onlyWhenCreating()
                 ->setFormType(PasswordType::class),
             ArrayField::new('roles'),
-            IntegerField::new('etat')
+            TextareaField::new('etat')
                 ->setFormType(IntegerType::class)
                 ->setFormTypeOptions([
                     'attr' => [
