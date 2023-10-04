@@ -29,7 +29,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $etat = null;
 
     public function getId(): ?int
@@ -107,7 +107,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->etat;
     }
 
-    public function setEtat(int $etat): static
+    public function setEtat(?int $etat): static
     {
         $this->etat = $etat;
 
