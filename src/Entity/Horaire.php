@@ -14,8 +14,9 @@ class Horaire
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $idUser = null;
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'idUser', referencedColumnName: 'idUser')]
+    private ?User $user = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $beginDate = null;
@@ -28,14 +29,14 @@ class Horaire
         return $this->id;
     }
 
-    public function getIdUser(): ?int
+    public function getUser(): ?User
     {
-        return $this->idUser;
+        return $this->user;
     }
 
-    public function setIdUser(int $idUser): static
+    public function setUser(?User $user): static
     {
-        $this->idUser = $idUser;
+        $this->user = $user;
 
         return $this;
     }
