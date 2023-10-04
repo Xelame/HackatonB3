@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Etat;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginAuthenticator;
@@ -33,6 +34,8 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $etat = $entityManager->getRepository(Etat::class)->find(4);
+            $user->setEtat($etat);
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email

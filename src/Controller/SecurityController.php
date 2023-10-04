@@ -24,6 +24,9 @@ class SecurityController extends AbstractController
         }
     }
 
+    
+
+
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
@@ -35,11 +38,13 @@ class SecurityController extends AbstractController
     public function index(): Response
     {
         if ($this->isGranted('ROLE_ADMIN')) {
-            return new RedirectResponse($this->urlGenerator->generate('admin'));
+            return $this->redirectToRoute('admin');
         } elseif ($this->isGranted('ROLE_TABLET')) {
-            return new RedirectResponse($this->urlGenerator->generate('tablet'));
+            return $this->redirectToRoute('tablet');
         } else {
-            return new RedirectResponse($this->urlGenerator->generate('app_logout'));
+            return $this->redirectToRoute('app_logout');
         }
     }
 }
+
+

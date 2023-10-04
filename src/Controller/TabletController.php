@@ -15,7 +15,7 @@ class TabletController extends AbstractController
     {
 
         $user = $security->getUser();
-        $etat = $user->getEtat();
+        $etat = $user->getEtat()->getId();
 
         $poufsouffle = "";
 
@@ -28,8 +28,6 @@ class TabletController extends AbstractController
                 $poufsouffle = "orange";
             } else ($poufsouffle = "green");
         }
-
-
 
         return $this->render('tablet/index.html.twig', [
             'controller_name' => 'TabletController',
