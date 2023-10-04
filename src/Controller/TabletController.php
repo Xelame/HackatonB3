@@ -16,22 +16,23 @@ class TabletController extends AbstractController
     {
 
         $user = $security->getUser();
-        $etat = $user->getEtat();
+        $etat = $user->getEtat()->getId();
 
-        $posted = "";
+        $poufsouffle = "";
 
-        if ($etat == 0) {
-            return $this->redirectToRoute('admin');
-        } else if ($etat == 1) {
-            $posted = "red";
-        } else if ($etat == 2) {
-            $posted = "orange";
-        } else ($posted = "green");
-
+        if ($etat != null) {
+            if ($etat == 0) {
+                return $this->redirectToRoute('admin');
+            } else if ($etat == 1) {
+                $poufsouffle = "red";
+            } else if ($etat == 2) {
+                $poufsouffle = "orange";
+            } else ($poufsouffle = "green");
+        }
 
         return $this->render('tablet/index.html.twig', [
             'controller_name' => 'TabletController',
-            'etat' => $posted,
+            'etat' => $poufsouffle,
         ]);
     }
 
