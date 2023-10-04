@@ -20,7 +20,7 @@ class TabletController extends AbstractController
         $posted = "";
 
         if ($etat == 0) {
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('app_logout');
         } else if ($etat == 1) {
             $posted = "red";
         } else if ($etat == 2) {
