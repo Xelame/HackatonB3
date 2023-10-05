@@ -3,11 +3,12 @@
 {% block title %}Fauteuil !{% endblock %}
 
 {% block body %}
+    {% include "header/index.html.twig" %}
     <h1 style="text-align: center;">Récapitulatif des salles</h1>
     <table style="margin: 0 auto;">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>Numéro de salle</th>
                 <th>État</th>
             </tr>
         </thead>
@@ -20,4 +21,16 @@
             {% endfor %}
         </tbody>
     </table>
+
+
+    <style>
+        table{
+            width: 250px;
+        }
+
+        thead tr {
+            height: 50px;
+        }
+
+    </style>
 {% endblock %}
