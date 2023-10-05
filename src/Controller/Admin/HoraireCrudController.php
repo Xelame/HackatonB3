@@ -4,6 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Horaire;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 
 class HoraireCrudController extends AbstractCrudController
 {
@@ -12,14 +15,26 @@ class HoraireCrudController extends AbstractCrudController
         return Horaire::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            DateTimeField::new('beginDate'),
+            DateTimeField::new('endDate'),
+            TextField::new('user.email', 'User')
+            ->hideOnForm()
+            ->formatValue(function ($email) {
+                // remove the @ynov.com or something else
+                return substr($email, 0, strpos($email, '@'));
+            }),
+            AssociationField::new('user', 'User')
+                ->setFormTypeOptions([
+                    'class' => 'App\Entity\User',
+                    'choice_label' => 'email',
+                    'choice_value' => 'id',
+                ])
+            ->hideOnIndex()
         ];
     }
-    */
+    
 }

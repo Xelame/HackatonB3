@@ -24,6 +24,7 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
@@ -33,8 +34,11 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $etat = $entityManager->getRepository(Etat::class)->find(4);
+            $etat = $entityManager->getRepository(Etat::class)->find(3);
             $user->setEtat($etat);
+
+            $user->setRoles(['ROLE_TABLET']);
+
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
