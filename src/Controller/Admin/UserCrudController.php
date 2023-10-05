@@ -28,7 +28,8 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             IntegerField::new('id', 'ID')
-            ->setFormType(IntegerType::class),
+                ->hideOnForm()
+                ->hideOnIndex(),
             TextField::new('email')
                 ->setFormType(EmailType::class),
             TextField::new('password')

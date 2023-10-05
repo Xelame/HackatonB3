@@ -17,9 +17,9 @@ class TabletController extends AbstractController
     {
 
         $user = $security->getUser();
-        $etat = $user->getEtat();
+        $etat = $user->getEtat()->getId();
 
-        $poufsouffle = 0;
+        $posted = "";
 
         if ($etat == 0) {
             return $this->redirectToRoute('admin');

@@ -22,7 +22,11 @@ class HoraireCrudController extends AbstractCrudController
             DateTimeField::new('beginDate'),
             DateTimeField::new('endDate'),
             TextField::new('user.email', 'User')
-            ->hideOnForm(),
+            ->hideOnForm()
+            ->formatValue(function ($email) {
+                // remove the @ynov.com or something else
+                return substr($email, 0, strpos($email, '@'));
+            }),
             AssociationField::new('user', 'User')
                 ->setFormTypeOptions([
                     'class' => 'App\Entity\User',
@@ -30,7 +34,6 @@ class HoraireCrudController extends AbstractCrudController
                     'choice_value' => 'id',
                 ])
             ->hideOnIndex()
-            
         ];
     }
     
