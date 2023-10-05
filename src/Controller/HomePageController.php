@@ -13,7 +13,7 @@ class HomePageController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         // Récupérez les utilisateurs ayant un état égal à 1, 2 ou 3
-        $usersWithSpecificEtats = $userRepository->findBy(['Etat' => [1, 2, 3]]);
+        $usersWithSpecificEtats = $userRepository->findBy(['etat' => [1, 2, 3]]);
 
         $filteredUserData = [];
         foreach ($usersWithSpecificEtats as $user) {
