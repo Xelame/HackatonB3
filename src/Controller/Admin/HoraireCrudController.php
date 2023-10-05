@@ -20,8 +20,8 @@ class HoraireCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('beginDate'),
-            TextField::new('endDate'),
+            TimeField::new('beginDate'),
+            TimeField::new('endDate'),
             TextField::new('user.email', 'User')
             ->hideOnForm(),
             AssociationField::new('user', 'User')
