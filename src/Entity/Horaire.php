@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\HoraireRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: HoraireRepository::class)]
@@ -18,11 +17,11 @@ class Horaire
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $beginDate = null;
+    #[ORM\Column(length: 255)]
+    private ?string $beginDate = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $endDate = null;
+    #[ORM\Column(length: 255)]
+    private ?string $endDate = null;
 
     public function getId(): ?int
     {
@@ -42,24 +41,24 @@ class Horaire
         return $this;
     }
 
-    public function getBeginDate(): ?\DateTimeInterface
+    public function getBeginDate(): ?string
     {
         return $this->beginDate;
     }
 
-    public function setBeginDate(\DateTimeInterface $beginDate): static
+    public function setBeginDate(string $beginDate): static
     {
         $this->beginDate = $beginDate;
 
         return $this;
     }
 
-    public function getEndDate(): ?\DateTimeInterface
+    public function getEndDate(): ?string
     {
         return $this->endDate;
     }
 
-    public function setEndDate(\DateTimeInterface $endDate): static
+    public function setEndDate(string $endDate): static
     {
         $this->endDate = $endDate;
 
