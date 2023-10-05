@@ -31,6 +31,8 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            IntegerField::new('id', 'ID')
+            ->setFormType(IntegerType::class),
             TextField::new('email')
                 ->setFormType(EmailType::class),
             TextField::new('password')
@@ -48,7 +50,7 @@ class UserCrudController extends AbstractCrudController
                 return null;
             })
             ->hideOnForm(),
-            AssociationField::new('Etat')
+            AssociationField::new('etat')
             ->hideOnIndex()
                 ->setFormType(EntityType::class)
                 ->setFormTypeOptions([

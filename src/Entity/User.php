@@ -29,8 +29,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Etat $Etat = null;
+    #[ORM\ManyToOne]
+    private ?Etat $etat = null;
 
     public function getId(): ?int
     {
@@ -104,12 +104,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getEtat(): ?Etat
     {
-        return $this->Etat;
+        return $this->etat;
     }
 
-    public function setEtat(?Etat $Etat): static
+    public function setEtat(?Etat $etat): static
     {
-        $this->Etat = $Etat;
+        $this->etat = $etat;
 
         return $this;
     }
