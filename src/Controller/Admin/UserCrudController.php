@@ -3,14 +3,19 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use Doctrine\DBAL\Types\TextType;
+use Doctrine\ORM\Mapping\OneToOne;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bundle\MakerBundle\Doctrine\RelationOneToOne;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -32,16 +37,25 @@ class UserCrudController extends AbstractCrudController
                 ->onlyWhenCreating()
                 ->setFormType(PasswordType::class),
             ArrayField::new('roles'),
-            TextareaField::new('etat')
-                ->setFormType(IntegerType::class)
+            IntegerField::new('etat.id', 'Etat')
+            ->formatValue(function ($value) {
+                if ($value == 1)
+                    return '<button disabled style="background-color:red; border:none; border-radius:5px; padding:5px; color:white;">Closed</button>';
+                if ($value == 2)
+                    return '<button disabled style="background-color:orange; border:none; border-radius:5px; padding:5px; color:white;">Key Needed</button>';
+                if ($value == 3)
+                    return '<button disabled style="background-color:green; border:none; border-radius:5px; padding:5px; color:white;">Open</button>';
+                return null;
+            })
+            ->hideOnForm(),
+            AssociationField::new('Etat')
+            ->hideOnIndex()
+                ->setFormType(EntityType::class)
                 ->setFormTypeOptions([
-                    'attr' => [
-                        'min' => 0,
-                        'max' => 3,
-                    ],
+                    'class' => 'App\Entity\Etat',
+                    'choice_label' => 'Label',
                 ])
-
-
+            ,
         ];
     }
     public function configureActions(Actions $actions): Actions
