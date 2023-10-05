@@ -30,7 +30,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Etat $etat = null;
+    private ?Etat $Etat = null;
 
     public function getId(): ?int
     {
@@ -104,12 +104,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getEtat(): ?Etat
     {
-        return $this->etat;
+        return $this->Etat;
     }
 
-    public function setEtat(?Etat $etat): static
+    public function setEtat(?Etat $Etat): static
     {
-        $this->etat = $etat;
+        $this->Etat = $Etat;
 
         return $this;
     }

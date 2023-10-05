@@ -17,7 +17,7 @@ class TabletController extends AbstractController
         $user = $security->getUser();
         $etat = $user->getEtat()->getId();
 
-        $poufsouffle = "";
+        $poufsouffle = 0;
 
         if ($etat != null) {
             if ($etat == 0) {
