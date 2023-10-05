@@ -16,23 +16,24 @@
 
 <script> 
     function checkEtat(){
-        const etatDiv = document.querySelector('.{{ etat }}');
+        const etatSelector = ".{{ etat }}"; 
+        const etatDiv = document.querySelector (etatSelector);
         let previousEtat = "{{ etat }}";
         console.log("ok");
     }
     function fetchEtat(){
-        fetch({{path('tablet_etat') }})
+        fetch("{{path('tablet_etat') }}")
         .then(Response => Response.json())
         
         .then(data => {
-            const currentEtat = data.etat }
+            const currentEtat = data.etat })
             if(currentEtat !== previousEtat){
                 
                 etatDiv.className = currentEtat
                 previousEtat = currentEtat
             }
            
-        )
+        
     console.log("ok");
     checkEtat()
     setInterval(fetchEtat, 3000); // (300 000) 5 minutes en millisecondes 

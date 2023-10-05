@@ -46,7 +46,7 @@ public function getEtat(Security $security, UserRepository $userRepository): Res
         return $this->redirectToRoute('admin');
     }
 
-    $usersWithSpecificEtats = $userRepository->findBy(['Etat' => [1, 2, 3]]);
+    $usersWithSpecificEtats = $userRepository->findBy(['etat' => [1, 2, 3]]);
     
     $filteredUserData = [];
     foreach ($usersWithSpecificEtats as $user) {
