@@ -38,29 +38,28 @@ class UserCrudController extends AbstractCrudController
                 ->setFormType(PasswordType::class),
             ArrayField::new('roles'),
             IntegerField::new('etat.id', 'Etat')
-            ->formatValue(function ($value) {
-                if ($value == 1)
-                    return '<button disabled style="background-color:red; border:none; border-radius:5px; padding:5px; color:white;">Closed</button>';
-                if ($value == 2)
-                    return '<button disabled style="background-color:orange; border:none; border-radius:5px; padding:5px; color:white;">Key Needed</button>';
-                if ($value == 3)
-                    return '<button disabled style="background-color:green; border:none; border-radius:5px; padding:5px; color:white;">Open</button>';
-                return null;
-            })
-            ->hideOnForm(),
+                ->formatValue(function ($value) {
+                    if ($value == 1)
+                        return '<button disabled style="background-color:red; border:none; border-radius:5px; padding:5px; color:white;">Closed</button>';
+                    if ($value == 2)
+                        return '<button disabled style="background-color:orange; border:none; border-radius:5px; padding:5px; color:white;">Key Needed</button>';
+                    if ($value == 3)
+                        return '<button disabled style="background-color:green; border:none; border-radius:5px; padding:5px; color:white;">Open</button>';
+                    return null;
+                })
+                ->hideOnForm(),
             AssociationField::new('Etat')
-            ->hideOnIndex()
+                ->hideOnIndex()
                 ->setFormType(EntityType::class)
                 ->setFormTypeOptions([
                     'class' => 'App\Entity\Etat',
                     'choice_label' => 'Label',
-                ])
-            ,
+                ]),
         ];
     }
     public function configureActions(Actions $actions): Actions
     {
-        return $actions
-            ->remove(Crud::PAGE_INDEX, Action::NEW);
+        return $actions;
+        // ->remove(Crud::PAGE_INDEX, Action::NEW);
     }
 }
