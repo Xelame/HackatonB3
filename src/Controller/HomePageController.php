@@ -13,13 +13,17 @@ class HomePageController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         // Récupérez les utilisateurs ayant un état égal à 1, 2 ou 3
-        $usersWithSpecificEtats = $userRepository->findBy(['etat' => [1, 2, 3]]);
+        $usersWithSpecificEtats = $userRepository->findBy(['Etat' => [1, 2, 3]]);
 
-        // Créez un tableau pour stocker uniquement les ID et les états de ces utilisateurs
         $filteredUserData = [];
         foreach ($usersWithSpecificEtats as $user) {
+            $abberantFrerot = $user->getEmail();
+            $emailParts = explode('@', $abberantFrerot);
+
+            $fish = is_array($emailParts) ? $emailParts[0] : $abberantFrerot;
+
             $filteredUserData[] = [
-                'id' => $user->getId(),
+                'fish' => $fish,
                 'etat' => $user->getEtat(),
             ];
         }

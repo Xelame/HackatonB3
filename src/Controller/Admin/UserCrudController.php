@@ -52,13 +52,12 @@ class UserCrudController extends AbstractCrudController
                 ->setFormTypeOptions([
                     'class' => 'App\Entity\Etat',
                     'choice_label' => 'Label',
-                ])
-            ,
+                ]),
         ];
     }
     public function configureActions(Actions $actions): Actions
     {
-        return $actions
-            ->remove(Crud::PAGE_INDEX, Action::NEW);
+        return $actions;
+        // ->remove(Crud::PAGE_INDEX, Action::NEW);
     }
 }
