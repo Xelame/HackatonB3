@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\HoraireRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: HoraireRepository::class)]
@@ -13,21 +14,43 @@ class Horaire
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $beginDate = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $endDate = null;
+
+    #[ORM\ManyToOne(inversedBy: 'horaires')]
     private ?User $user = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $beginDate = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $endDate = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    public function getBeginDate(): ?\DateTimeInterface
+    {
+        return $this->beginDate;
+    }
+
+    public function setBeginDate(\DateTimeInterface $beginDate): static
+    {
+        $this->beginDate = $beginDate;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?\DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(\DateTimeInterface $endDate): static
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
 
     public function getUser(): ?User
     {
@@ -37,30 +60,6 @@ class Horaire
     public function setUser(?User $user): static
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    public function getBeginDate(): ?string
-    {
-        return $this->beginDate;
-    }
-
-    public function setBeginDate(string $beginDate): static
-    {
-        $this->beginDate = $beginDate;
-
-        return $this;
-    }
-
-    public function getEndDate(): ?string
-    {
-        return $this->endDate;
-    }
-
-    public function setEndDate(string $endDate): static
-    {
-        $this->endDate = $endDate;
 
         return $this;
     }
