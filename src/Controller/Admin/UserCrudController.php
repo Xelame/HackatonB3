@@ -31,7 +31,11 @@ class UserCrudController extends AbstractCrudController
                 ->hideOnForm()
                 ->hideOnIndex(),
             TextField::new('email')
-                ->setFormType(EmailType::class),
+                ->setFormType(EmailType::class)
+                ->formatValue(function ($email) {
+                    // remove the @ynov.com or something else
+                    return substr($email, 0, strpos($email, '@'));
+                }),
             TextField::new('password')
                 ->onlyWhenCreating()
                 ->setFormType(PasswordType::class),
