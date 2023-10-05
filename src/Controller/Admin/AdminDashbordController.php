@@ -17,12 +17,12 @@ class AdminDashbordController extends AbstractDashboardController
     public function index(): Response
     {
         $routeBuilder = $this->container->get(AdminUrlGenerator::class);
-        $url = $routeBuilder->setController(UserCrudController::class)->generateUrl();
+        $caDegage = $routeBuilder->setController(UserCrudController::class)->generateUrl();
 
 
 
 
-        return $this->redirect($url);
+        return $this->redirect($caDegage);
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
@@ -44,16 +44,18 @@ class AdminDashbordController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('HackatonB3');
+            ->setTitle('YSalles');
     }
 
     public function configureMenuItems(): iterable
     {
         // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linktoRoute('Page d\'accueil', 'fas fa-home', 'app_home_page');
+        yield MenuItem::linktoRoute('Page D\'accueil', 'fas fa-home', 'app_home_page');
         yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
         yield MenuItem::linkToCrud('Horaire', 'fas fa-list', Horaire::class);
         yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
+
+
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
