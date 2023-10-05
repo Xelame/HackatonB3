@@ -1,16 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomePageController!{% endblock %}
+{% block title %}Fauteuil !{% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <h1 class="text-center my-4">Test de Bootstrap</h1>
-            <a href="" class="btn btn-primary">test</a>
-        </div>
-        <div class="col-4"></div>
-    </div>
-</div>
+    {% include "header/index.html.twig" %}
+    <h1 style="text-align: center;">Récapitulatif des salles</h1>
+    <table style="margin: 0 auto;">
+        <thead>
+            <tr>
+                <th>Numéro de salle</th>
+                <th>État</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for userData in filteredUserData %}
+                <tr>
+                    <td style="text-align: center;">{{ userData.fish}}</td>
+                    <td style="text-align: center;">
+                        {% if userData.etat.getLabel() == "Closed"%}
+                            <button disabled style="background-color:red; border:none; border-radius:5px; padding:5px; color:white;">Closed</button>
+                        {% endif %} 
+                        {% if userData.etat.getLabel() == "Key Needed" %}            
+                            <button disabled style="background-color:orange; border:none; border-radius:5px; padding:5px; color:white;">Key Needed</button>
+                        {% endif %}
+                        {% if userData.etat.getLabel() == "Open" %}
+                            <button disabled style="background-color:green; border:none; border-radius:5px; padding:5px; color:white;">Open</button>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <style>
+        table{
+            width: 250px;
+        }
+
+        thead tr {
+            height: 50px;
+        }
+
+    </style>
 {% endblock %}
