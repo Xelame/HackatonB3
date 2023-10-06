@@ -22,6 +22,14 @@ Pour cela notre web app devait donc réaliser les actions suivante :
 Nous avons décidé de travailler avec le framework Symfony dans sa version 6. Ce framework assez facile à prendre en main était un choix cohérent quand à la demande du projet.
 Nous avons donc utilisé les langages suivants : Php, html, css, twig, js et mySql.
 
+Prérequis :
+
+Symfony 6
+
+PHP 8
+
+XAMPP (Apache et SQL)
+
 Procédure d'installation :
 
 Ouvrir un cmd
@@ -30,7 +38,7 @@ Clonez le répertoire git clone https://github.com/Xelame/HackatonB3.git
 
 Placez vous dans le projet cd /HacktonB3
 
-La base de données est disponible sous le nom de |A REMPLIR| dans le repertoire principal.
+La base de données est disponible sous le nom de hackatonB3 dans le repertoire principal.
 
 Modifiez le .env avec vos informations avant de démarrer le site.
 

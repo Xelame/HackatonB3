@@ -24,9 +24,6 @@ class Horaire
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $endDate = null;
 
-    #[ORM\ManyToOne(inversedBy: 'horaires')]
-    private ?User $user = null;
-
     public function getId(): ?int
     {
         return $this->id;

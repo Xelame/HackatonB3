@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 05 oct. 2023 à 16:38
+-- Généré le : ven. 06 oct. 2023 à 07:31
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.0.28
 
@@ -40,7 +40,8 @@ CREATE TABLE `doctrine_migration_versions` (
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 ('DoctrineMigrations\\Version20231005090646', '2023-10-05 09:08:03', 267),
 ('DoctrineMigrations\\Version20231005125037', '2023-10-05 12:50:44', 182),
-('DoctrineMigrations\\Version20231005140745', '2023-10-05 14:07:58', 151);
+('DoctrineMigrations\\Version20231005140745', '2023-10-05 14:07:58', 151),
+('DoctrineMigrations\\Version20231005222303', '2023-10-05 22:23:19', 263);
 
 -- --------------------------------------------------------
 
@@ -58,7 +59,7 @@ CREATE TABLE `etat` (
 --
 
 INSERT INTO `etat` (`id`, `label`) VALUES
-(1, 'Closed'),
+(1, 'Closed\r\n'),
 (2, 'Key Needed'),
 (3, 'Open');
 
@@ -70,17 +71,10 @@ INSERT INTO `etat` (`id`, `label`) VALUES
 
 CREATE TABLE `horaire` (
   `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `begin_date` datetime NOT NULL,
-  `end_date` datetime NOT NULL,
-  `user_id` int(11) DEFAULT NULL
+  `end_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `horaire`
---
-
-INSERT INTO `horaire` (`id`, `begin_date`, `end_date`, `user_id`) VALUES
-(2, '2023-10-05 10:15:00', '2023-10-05 11:45:00', 1);
 
 -- --------------------------------------------------------
 
@@ -128,12 +122,25 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `etat_id`, `email`, `roles`, `password`) VALUES
-(1, 1, 'a@test.com', '[\"ROLE_TABLET\"]', '$2y$13$.Stqm12P65Yu3AoDjWL7T.yPZvtrz7VDEcmhxtfaqayfoOPOdAwmy'),
-(2, 1, 'b@test.com', '[\"ROLE_TABLET\"]', '$2y$13$UytsQ7VyEhzcRIUvl0AqzuW.RpC90flV1EXDqmeBqZ.tR3Lj2K.hG'),
-(3, 1, 'c@test.com', '[\"ROLE_TABLET\"]', '$2y$13$pc63PWtAhZwj9TLzvhSWEOeJfIIrFArmICShPyDY4BjaCQAb4IR6O'),
 (4, NULL, 'admin@test.com', '[\"ROLE_ADMIN\"]', '$2y$13$satyFvaCmBuWvxx9SDZkBeSi/QQ9Mrme0iVc4kBkkDZsw6Z1.Quvm'),
-(5, 2, '304@ynov.com', '[\"ROLE_USER\",\"ROLE_TABLET\"]', '304@ynov.com'),
-(6, 3, '305@test.com', '[\"ROLE_USER\",\"ROLE_TABLET\"]', '305@test.com');
+(7, 3, '304@test.com', '[\"ROLE_TABLET\"]', '$2y$13$s9JiNJr4IJrcWVpA.9gtmO6whD5iI936rz1Q.1tcv8WUGTczRSMpy'),
+(8, 3, '306@test.com', '[\"ROLE_TABLET\"]', '$2y$13$9EUWvKvzw0yWHfo2wHBfFuGEpFlcoko.HGYPjrCuTtaIrRsg07LGq'),
+(9, 3, '308@test.com', '[\"ROLE_TABLET\"]', '$2y$13$DCbUoLd5TdLCGhpA0CJy3.B4vISOIE.k9TvqNvaTTwembBNnY2XSa'),
+(10, 3, '206@gmail.com', '[\"ROLE_TABLET\"]', '$2y$13$vhVsjD0LhnYUdA.XFIisgO9BAiVBElKemjeCP.67E6PTb0yV/Efhe'),
+(11, 3, '205@gmail.com', '[\"ROLE_TABLET\"]', '$2y$13$.jyGXyPwqzs5bv6h98b07OdF48v5QV7YRfyXiqgDIJ2hRgU5vBb8a'),
+(12, 3, '301@test.com', '[\"ROLE_TABLET\"]', '$2y$13$JwpGzO.06Xe79pXZmm/H9e1TLqhQV/YqDV35J3HU5Z7bbHjzSVIV2'),
+(13, 3, '302@test.com', '[\"ROLE_TABLET\"]', '$2y$13$c9wSbUWdGTjpyJu4TrKoI.ZoedxrgjmQG7iwLKdWa4rxLeAbcc4dy'),
+(14, 3, '303@test.com', '[\"ROLE_TABLET\"]', '$2y$13$WqeVLTOpMpqkyu.1sTSeZOQ3FdGMonaoyGH1BNRSOnTE3/piR1.S6'),
+(15, 3, '101@test.com', '[\"ROLE_TABLET\"]', '$2y$13$JAZ8OD7FGmj6rOSnqkzTEOMCXpDCLCm9ZhcUAjOx7rsIw8YXdqLlu'),
+(16, 3, '102@test.com', '[\"ROLE_TABLET\"]', '$2y$13$F2oV68J6v59WpzkrM8cOeeMdXp1YSNnYGIsrdB1.pDJI.PYTS9tIe'),
+(17, 3, '103@test.com', '[\"ROLE_TABLET\"]', '$2y$13$HAW3fNFwzVfFm57D93dVnuRizxUNUco3JlC/Kkq6umr.i3HX2UQeC'),
+(18, 3, '104@test.com', '[\"ROLE_TABLET\"]', '$2y$13$Eu/11Rcx1luJ8QMHDah.wOVtT34btmbS065uwEaHzEI6nU1TR96mG'),
+(19, 3, '201@test.com', '[\"ROLE_TABLET\"]', '$2y$13$jjmW0twwcWrOlztlPPLaeuhs2MpmUh/WKYLaDGPYJmca.AIz5HoBG'),
+(20, 3, '202@test.com', '[\"ROLE_TABLET\"]', '$2y$13$8G.LzF7dV2gUk5/unyB9gOzgcsrUQ.G9VcLERv80I8pvXHP6b17Ay'),
+(21, 3, '203@test.com', '[\"ROLE_TABLET\"]', '$2y$13$/kHTNmE.GHzM6Mw7Qr2TxuwlA/PFtlCEObGd80w7HpVCDSgCrKj5y'),
+(22, 3, '204@test.com', '[\"ROLE_TABLET\"]', '$2y$13$/xdZ97rugYMs/GVOm4qcK.c8Q5EjVJzUy0nE51dJLlyUeaL/Qda1q'),
+(23, 3, '305@test.com', '[\"ROLE_TABLET\"]', '$2y$13$4OT5Mgf6rpzX8EhzuqjcIufVkGpyY9JkojFTBFwWMXkRTPw3JKHqm'),
+(24, 3, '307@test.com', '[\"ROLE_TABLET\"]', '$2y$13$G5YYVVD2Rv7ik2Ic5qdtJ.VD2hjnJpai7Xvg.PhVb90KUZc5pMKW.');
 
 --
 -- Index pour les tables déchargées
@@ -189,13 +196,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `etat`
 --
 ALTER TABLE `etat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `horaire`
 --
 ALTER TABLE `horaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `messenger_messages`
@@ -213,7 +220,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Contraintes pour les tables déchargées
