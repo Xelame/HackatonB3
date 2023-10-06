@@ -54,4 +54,15 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
+
+    public function index(): Response
+    {
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin');
+        } elseif ($this->isGranted('ROLE_TABLET')) {
+            return $this->redirectToRoute('tablet');
+        } else {
+            return $this->redirectToRoute('app_logout');
+        }
+    }
 }
