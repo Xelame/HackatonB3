@@ -1,3 +1,9 @@
+#### Livrables :
+
+[Lien du Kanban](https://trello.com/invite/b/KsNKHmAc/ATTIb0238e5a31d4e0599f58c310db63b348FE01D0A7/hackatonb3)
+
+[Lien du GitHub](https://github.com/Xelame/HackatonB3)
+
 # YSalles
 
 Projet réalisé dans le cadre d'un Hackaton de 72h à Ynov Nantes pour les B3 Informatique.
