@@ -59,7 +59,7 @@ CREATE TABLE `etat` (
 --
 
 INSERT INTO `etat` (`id`, `label`) VALUES
-(1, 'Closed\r\n'),
+(1, 'Closed'),
 (2, 'Key Needed'),
 (3, 'Open');
 
